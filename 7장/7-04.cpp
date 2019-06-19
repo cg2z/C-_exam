@@ -13,14 +13,18 @@ public:
 		cout << title << ' ' << price << "원 " << pages << " 페이지" << endl;
 	}
 	string getTitle() { return title; }
-	void operator += (int num) { this->price += num; }
-	void operator -= (int num) { this->price -= num; }
+	friend bool operator <(string str, Book op1) {
+		if (str < op1.title)
+			return true;
+		else return false;
+	}
 };
 
 void main() {
-	Book a("청춘", 20000, 300), b("미래", 30000, 500);
-	a += 500;
-	b -= 500;
-	a.show();
-	b.show();
+	Book a("청춘", 20000, 300);
+	string b;
+	cout << "책 이름을 입력하세요>>";
+	getline(cin, b);
+	if (b < a)
+		cout << a.getTitle() << "이 " << b << "보다 뒤에 있구나!" << endl;
 }
